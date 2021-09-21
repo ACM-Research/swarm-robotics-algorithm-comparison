@@ -29,12 +29,12 @@ jobs:
       - name: Verify Installations
         run: |
           xmllint --version
-          fd --version
+          fdfind --version
       - name: Setup xmllint annotations
         uses: korelstar/xmllint-problem-matcher@v1
 
       - name: Lint SDF files
         working-directory: ${{ env.GITHUB_WORKSPACE }}
-        run: fd -tf -e 'sdf' -e 'world' -X xmllint --schema "$SCHEMA_URL" --noout --load-trace
+        run: fdfind -tf -e 'sdf' -e 'world' -X xmllint --schema "$SCHEMA_URL" --noout --load-trace
 
   # TODO: check formatting of SDF files
