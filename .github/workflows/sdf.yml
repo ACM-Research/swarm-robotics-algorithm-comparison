@@ -4,9 +4,11 @@ on:
   push:
     paths:
     - '**.sdf'
+    - '**.world'
   pull_request:
     paths:
     - '**.sdf'
+    - '**.world'
 
   workflow_dispatch:
 
@@ -23,12 +25,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Required Packages
-        run: sudo apt-get install --no-install-recommends -y libxml2-utils
+        run: sudo apt-get install --no-install-recommends -y libxml2-utils fd-find
+      - name: Verify Installations
+        run: |
+          xmllint --version
+          fd --version
       - name: Setup xmllint annotations
         uses: korelstar/xmllint-problem-matcher@v1
 
       - name: Lint SDF files
-        # ripped from https://github.com/korelstar/xmllint-problem-matcher/blob/26cc4130cb560d39ef1320273f1662ba9182d05f/.github/workflows/lint.yml#L18
-        run: fd '.sdf' "$GITHUB_WORKSPACE" -tf -X xmllint --schema "$SCHEMA_URL" --noout
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
+        run: fd -tf -e 'sdf' -e 'world' -X xmllint --schema "$SCHEMA_URL" --noout --load-trace
 
   # TODO: check formatting of SDF files
