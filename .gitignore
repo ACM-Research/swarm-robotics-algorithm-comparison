@@ -13,3 +13,7 @@ Saved
 *.xcodeproj
 *.xcworkspace
 .DS_Store
+Source/
+MyProject3.code-workspace
+.ignore
+Content/Maps/Cue_BuiltData.uasset
