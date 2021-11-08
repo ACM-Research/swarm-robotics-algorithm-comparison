@@ -12,7 +12,7 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
-.DS_Store
+*.DS_Store
 Source/
 MyProject3.code-workspace
 .ignore
