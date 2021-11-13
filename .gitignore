@@ -17,3 +17,4 @@ Source/
 MyProject3.code-workspace
 .ignore
 Content/Maps/Cue_BuiltData.uasset
+Logs/
