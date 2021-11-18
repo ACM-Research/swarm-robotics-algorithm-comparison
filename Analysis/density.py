@@ -34,11 +34,12 @@ def density_over_time(simulation, eps, min_samples=5):
     :param simulation: a DataFrame of x,y,z coordinates indexed by timestamp
     :return: a DataFrame with columns [timestamp, clusters, noise]
     """
-    # return simulation.groupby('timestamp').apply(
-    #     lambda moment: Series([moment.timestamp]) + Series(
-    #         density(array(moment), eps, min_samples),
-    #         index=['clusters', 'noise']))
-    return DataFrame.from_records(
-        ((float(t), *density(moment, eps, min_samples)) for t, moment in
-         simulation.groupby('timestamp')),
-        columns=['timestamp', 'clusters', 'noise'])
+    densities = simulation.groupby('timestamp').apply(
+        lambda moment: Series(density(array(moment), eps, min_samples),
+                              index=['clusters', 'noise']))
+    densities['timestamp'] = densities.index
+    return densities
+    # return DataFrame.from_records(
+    #     ((float(t), *density(moment, eps, min_samples)) for t, moment in
+    #      simulation.groupby('timestamp')),
+    #     columns=['timestamp', 'clusters', 'noise'])

@@ -11,7 +11,7 @@ def parse_coord(coord: str) -> List[float]:
 
 def parse_line(line: str):
     event, actor_id, timestamp, coordinates = line.split(',', 4)
-    return tuple([event, actor_id, timestamp] + parse_coord(coordinates))
+    return tuple([event, actor_id, float(timestamp)] + parse_coord(coordinates))
 
 
 def parse(file_path: str) -> DataFrame:
