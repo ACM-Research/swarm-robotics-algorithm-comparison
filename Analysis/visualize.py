@@ -1,15 +1,20 @@
+import os
 import sys
 
 import matplotlib.pyplot as plt
 import seaborn
-from joblib import delayed, Parallel
+from joblib import delayed, Memory, Parallel
 from pandas import concat
 
 from density import density_over_time
 from parse import parse, parse_name
 from playback import coordinates_by_timestamp
 
+cache_dir = os.getenv('CACHE_DIR', default='.cache')
+memory = Memory(cache_dir)
 
+
+@memory.cache
 def process(log_file, eps=.1, min_samples=2):
     recording = parse(log_file)
     playback = coordinates_by_timestamp(recording)

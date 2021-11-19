@@ -8,6 +8,5 @@ def verify(updates: DataFrame) -> bool:
 
 def coordinates_by_timestamp(updates):
     relevent_logs = updates[updates['event'] == 'TICK']
-    moments = relevent_logs[['timestamp', 'x', 'y', 'z']].set_index(
-        'timestamp')
+    moments = relevent_logs[['timestamp', 'x', 'y', 'z']].set_index('timestamp')
     return moments

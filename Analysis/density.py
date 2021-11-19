@@ -1,4 +1,5 @@
-from pandas import DataFrame
+from numpy import array
+from pandas import Series
 from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
 
