@@ -21,3 +21,6 @@ Our research applies to problems such as real-world mining and search/rescue. Th
 # Contributors
 - [Ryan Aspenleiter](https://github.com/RyanAspen) - Research Lead
 - [Dr. Ovidiu Daescu](https://personal.utdallas.edu/~daescu/) - Faculty Advisor
+
+# Code
+To see the code, go to the pheromone branch.
